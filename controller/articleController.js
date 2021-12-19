@@ -1,4 +1,4 @@
-const {Article} = require('./../models')
+const {Article, Comments} = require('./../models')
 const {validationResult} = require('express-validator')
 
 module.exports = {
@@ -39,6 +39,19 @@ module.exports = {
               code: 200,
               data: result
             })
+        })
+    },
+    getDetail: (req, res) => {
+        Article.findOne({
+            include : [{model: Comments, as: 'comments'}],
+            where: {id: req.params.id}
+        }).then(result => {
+            res.status(200).json({
+                message: "Berhasil get data articles", 
+                status: 'success',
+                code: 200,
+                data: result
+              })
         })
     }
 }

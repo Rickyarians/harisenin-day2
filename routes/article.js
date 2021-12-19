@@ -7,5 +7,7 @@ const {store} = require('./../middleware/validation/article')
 
 router.post('/', store ,article.create);
 router.get('/', article.getAll)
+router.get('/:id', article.getDetail)
+
 
 module.exports = router;

@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      Article.hasMany(models.Comments, {foreignKey: 'article_id', as: 'comments'})
     }
   };
   Article.init({
